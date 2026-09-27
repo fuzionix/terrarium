@@ -1,0 +1,1 @@
+//! Terrarium MCP Server Crate (Placeholder for Phase 0)

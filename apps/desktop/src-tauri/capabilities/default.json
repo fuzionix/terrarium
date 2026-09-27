@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "identifier": "default",
+  "description": "Only the IPC surfaces required by the workspace shell are exposed to the WebView (Isolation pattern enforced).",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "dialog:default",
+    "process:default",
+    "updater:default",
+    "os:default",
+    "notification:default"
+  ]
+}

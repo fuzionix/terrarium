@@ -1,0 +1,1 @@
+//! Terrarium API Crate (Placeholder for Phase 0)

@@ -1,0 +1,21 @@
+[package]
+name = "runtime-remote"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+runtime-api = { path = "../runtime-api" }
+terrarium-core = { path = "../terrarium-core" }
+rustls = { workspace = true }
+tokio-rustls = { workspace = true }
+rustls-pki-types = { workspace = true }
+rustls-native-certs = { workspace = true }
+jsonwebtoken = { workspace = true }
+ed25519-dalek = { workspace = true }
+reqwest = { workspace = true, features = ["json", "rustls-tls"] }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

@@ -1,0 +1,28 @@
+[package]
+name = "model-router"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+terrarium-core = { path = "../terrarium-core" }
+async-openai = { workspace = true }
+reqwest = { workspace = true }
+reqwest-eventsource = { workspace = true }
+ollama-rs = { workspace = true, optional = true }
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[features]
+default = []
+# Prefer Ollama's OpenAI-compatible endpoint via async-openai by default;
+# enable this only if native Ollama-specific calls (e.g. model pull) are needed.
+ollama-native-client = ["ollama-rs"]
+
+[dev-dependencies]
+wiremock = { workspace = true }
+tokio = { workspace = true, features = ["test-util"] }

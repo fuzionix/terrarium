@@ -1,0 +1,1 @@
+//! Terrarium MCP Host Crate (Placeholder for Phase 0)

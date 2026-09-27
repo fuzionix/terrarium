@@ -1,0 +1,1 @@
+//! Terrarium Host Crate (Placeholder for Phase 0)

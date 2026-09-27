@@ -1,0 +1,36 @@
+[package]
+name = "terrarium-desktop"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "terrarium_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { workspace = true }
+
+[dependencies]
+terrarium-core = { path = "../../../crates/terrarium-core" }
+terrarium-host = { path = "../../../crates/terrarium-host" }
+terrarium-api = { path = "../../../crates/terrarium-api" }
+runtime-microsandbox = { path = "../../../crates/runtime-microsandbox" }
+runtime-remote = { path = "../../../crates/runtime-remote" }
+secrets = { path = "../../../crates/secrets" }
+
+tauri = { workspace = true, features = ["isolation", "tray-icon", "image-png"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-process = "2"
+tauri-plugin-os = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-single-instance = "2"
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]

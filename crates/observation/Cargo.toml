@@ -1,0 +1,21 @@
+[package]
+name = "observation"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+terrarium-core = { path = "../terrarium-core" }
+runtime-api = { path = "../runtime-api" }
+sqlx = { workspace = true }
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+blake3 = { workspace = true, optional = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[features]
+default = []
+large-file-checksum = ["blake3"]

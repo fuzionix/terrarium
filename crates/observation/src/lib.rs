@@ -1,0 +1,1 @@
+//! Terrarium Observation Crate (Placeholder for Phase 0)

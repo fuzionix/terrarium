@@ -1,0 +1,21 @@
+[image]
+name = "web-research"
+base = "docker.io/library/debian:12-slim"
+
+[runtime]
+python = "3.11"
+
+[pip]
+packages = [
+    "browser-use",
+    "playwright",
+    "firecrawl-py",
+]
+
+[post_install]
+commands = [
+    "playwright install --with-deps chromium",
+]
+
+[policy.network]
+default_egress = "allowlist"

@@ -1,0 +1,26 @@
+[package]
+name = "terrarium-cli"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "terrarium"
+path = "src/main.rs"
+
+[dependencies]
+terrarium-core = { path = "../../crates/terrarium-core" }
+terrarium-host = { path = "../../crates/terrarium-host" }
+publish = { path = "../../crates/publish" }
+runtime-remote = { path = "../../crates/runtime-remote" }
+clap = { workspace = true, features = ["derive"] }
+indicatif = { workspace = true }
+dialoguer = { workspace = true }
+anstyle = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[dev-dependencies]
+assert_cmd = { workspace = true }
+predicates = { workspace = true }

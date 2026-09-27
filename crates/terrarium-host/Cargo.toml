@@ -1,0 +1,30 @@
+[package]
+name = "terrarium-host"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+terrarium-core = { path = "../terrarium-core" }
+runtime-api = { path = "../runtime-api" }
+model-router = { path = "../model-router" }
+tool-gateway = { path = "../tool-gateway" }
+review-bus = { path = "../review-bus" }
+observation = { path = "../observation" }
+publish = { path = "../publish" }
+secrets = { path = "../secrets" }
+mcp-host = { path = "../mcp-host" }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+parking_lot = { workspace = true }
+sqlx = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["test-util"] }

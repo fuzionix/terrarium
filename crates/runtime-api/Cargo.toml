@@ -1,0 +1,13 @@
+[package]
+name = "runtime-api"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+terrarium-core = { path = "../terrarium-core" }
+async-trait = { workspace = true }
+serde = { workspace = true }
+schemars = { workspace = true }
+thiserror = { workspace = true }
+tokio-stream = { workspace = true }
+uuid = { workspace = true }

@@ -1,0 +1,120 @@
+[workspace]
+resolver = "2"
+members = [
+    "apps/desktop/src-tauri",
+    "apps/cli",
+    "crates/terrarium-core",
+    "crates/terrarium-host",
+    "crates/terrarium-api",
+    "crates/runtime-api",
+    "crates/runtime-microsandbox",
+    "crates/runtime-remote",
+    "crates/model-router",
+    "crates/tool-gateway",
+    "crates/review-bus",
+    "crates/observation",
+    "crates/publish",
+    "crates/mcp-host",
+    "crates/mcp-server",
+    "crates/secrets",
+]
+# Guest extensions cross-compile to the guest target and keep their own
+# toolchain/lockfile; they are intentionally excluded from the host workspace.
+exclude = ["guest/agentd-extensions"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+license = "Proprietary"
+authors = ["Fuzionix"]
+
+[workspace.dependencies]
+# Shared base (Dependency List)
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs", "process", "signal", "io-util", "sync", "time"] }
+tokio-util = { version = "0.7", features = ["rt", "io"] }
+async-trait = "0.1"
+futures = "0.3"
+serde = { version = "1", features = ["derive", "rc"] }
+serde_json = "1"
+schemars = { version = "1", features = ["chrono04"] }
+thiserror = "2"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1", features = ["v7", "serde"] }
+chrono = { version = "0.4", features = ["serde", "clock"] }
+bytes = "1"
+parking_lot = "0.12"
+once_cell = "1"
+
+# Control plane API / observation
+axum = "0.8"
+tower = "0.5"
+tower-http = "0.6"
+tokio-stream = "0.1"
+http = "1"
+http-body-util = "0.1"
+mime_guess = "2"
+
+# Persistence
+sqlx = { version = "0.8", features = ["sqlite", "runtime-tokio", "migrate"] }
+sha2 = "0.10"
+blake3 = "1"
+
+# Secrets
+keyring = "4.2"
+chacha20poly1305 = "0.10"
+zeroize = "1"
+secrecy = "0.10"
+
+# Model Router
+async-openai = "0.42"
+reqwest = "0.12"
+reqwest-eventsource = "0.6"
+ollama-rs = "0.3.6"
+
+# Local Runtime
+microsandbox = { version = "0.7", features = ["local", "net", "keyring", "download-binaries"] }
+which = "6"
+sysinfo = "0.33"
+
+# Remote Runtime + Publish
+rustls = "0.23"
+tokio-rustls = "0.26"
+rustls-pki-types = "1"
+rustls-native-certs = "0.8"
+rcgen = "0.13"
+rustls-pemfile = "2"
+jsonwebtoken = "9"
+ed25519-dalek = "2"
+tar = "0.4"
+zstd = "0.13"
+flate2 = "1"
+
+# MCP
+rmcp = "3.4"
+rmcp-macros = "3.4"
+
+# Tauri shell
+tauri = "2"
+tauri-build = "2"
+
+# CLI
+clap = "4"
+indicatif = "0.17"
+dialoguer = "0.11"
+anstyle = "1"
+
+# Tests
+wiremock = "0.6"
+tempfile = "3"
+assert_cmd = "2"
+predicates = "3"
+proptest = "1"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

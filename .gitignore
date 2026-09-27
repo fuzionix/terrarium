@@ -1,0 +1,27 @@
+# Node
+node_modules/
+dist/
+dist-isolation/
+
+# Rust
+/target/
+**/target/
+
+# Tauri
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+
+# Secrets & env (never commit)
+.env
+.env.*
+*.pem
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/

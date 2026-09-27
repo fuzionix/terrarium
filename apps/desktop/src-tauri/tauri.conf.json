@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Terrarium",
+  "version": "0.1.0",
+  "identifier": "com.terrarium.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: asset:; connect-src 'self' http://127.0.0.1:* ipc: http://ipc.localhost",
+      "pattern": {
+        "use": "isolation",
+        "options": {
+          "dir": "../dist-isolation"
+        }
+      }
+    },
+    "windows": [
+      {
+        "title": "Terrarium",
+        "width": 1440,
+        "height": 900,
+        "minWidth": 1024,
+        "minHeight": 640
+      }
+    ],
+    "trayIcon": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["dmg", "msi", "nsis", "appimage", "deb"],
+    "icon": ["icons/icon.png"]
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "REPLACE_WITH_MINISIGN_PUBLIC_KEY",
+      "endpoints": [
+        "https://releases.terrarium.app/{{target}}/{{arch}}/{{current_version}}"
+      ]
+    }
+  }
+}

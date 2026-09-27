@@ -1,0 +1,1 @@
+//! Terrarium Remote Runtime Adapter (Placeholder for Phase 0)

@@ -1,0 +1,1 @@
+//! Terrarium MicroSandbox Runtime Adapter (Placeholder for Phase 0)

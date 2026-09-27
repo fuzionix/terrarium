@@ -1,0 +1,1 @@
+//! Terrarium Tool Gateway Crate (Placeholder for Phase 0)

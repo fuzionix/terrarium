@@ -1,0 +1,1 @@
+//! Terrarium Secrets Crate (Placeholder for Phase 0)

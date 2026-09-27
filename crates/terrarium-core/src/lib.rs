@@ -1,0 +1,1 @@
+//! Terrarium Core Crate (Placeholder for Phase 0)

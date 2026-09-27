@@ -1,0 +1,1 @@
+//! Terrarium Runtime API (Placeholder for Phase 0)

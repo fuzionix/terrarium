@@ -1,0 +1,21 @@
+[package]
+name = "terrarium-api"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+terrarium-core = { path = "../terrarium-core" }
+terrarium-host = { path = "../terrarium-host" }
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true, features = ["cors", "trace", "limit"] }
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+http = { workspace = true }
+http-body-util = { workspace = true }
+mime_guess = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+schemars = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
