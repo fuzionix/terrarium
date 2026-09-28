@@ -1,0 +1,136 @@
+/*
+ * Terrarium Design System v1.0 — Design Tokens
+ * ============================================================================
+ * Single source of truth for design tokens (colors, typography, spacing, radius)
+ *
+ * Design tokens are consumed by the Terrarium Design System components.
+ * Every change to these tokens should be reflected in the design system components.
+ * ============================================================================
+ */
+
+
+:root {
+  /* ----------------------------------------------------------------------------
+   * 01 — Color Tokens: Brand & Semantic (theme-independent)
+   * Keep in sync with tailwind.config.ts theme.extend.colors if this palette ever changes.
+   * -------------------------------------------------------------------------- */
+  --color-brand: #2648f2;
+  --color-brand-hover: #1e3ecb;
+  --color-brand-muted: rgba(38, 72, 242, 0.12);
+  --color-brand-ring: rgba(38, 72, 242, 0.6);
+
+  /* Environment state machine / HITL semantic colors */
+  --color-success: #22c55e;     /* Ready / Allow / exit 0 */
+  --color-info: #2648f2;        /* Running */
+  --color-warning: #f59e0b;     /* Paused / Ask */
+  --color-danger: #ef4444;      /* Failed / Deny */
+  --color-system: #a78bfa;      /* Snapshotting / Restoring */
+  --color-remote: #22d3ee;      /* Publishing / Remote */
+  --color-observe: #64748b;     /* Observe / Creating / Destroyed */
+  --color-high-risk: #fb7185;   /* Protected paths: /etc, .ssh, secrets */
+
+  /* --------------------------------------------------------------------------
+   * 02 — Typography
+   * ------------------------------------------------------------------------ */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  /* text-micro */
+  --text-micro-size: 11px;
+  --text-micro-line: 1.2;
+  --text-micro-weight: 500;
+
+  /* text-compact */
+  --text-compact-size: 12px;
+  --text-compact-line: 16px;
+  --text-compact-weight: 400;
+
+  /* text-ui */
+  --text-ui-size: 13px;
+  --text-ui-line: 20px;
+  --text-ui-weight: 400;
+
+  /* text-title */
+  --text-title-size: 14px;
+  --text-title-line: 20px;
+  --text-title-weight: 600;
+
+  /* --------------------------------------------------------------------------
+   * 03 — Spacing, Radius & Density
+   * ------------------------------------------------------------------------ */
+  --control-height-sm: 24px;
+  --control-height-md: 28px; /* default control height */
+  --control-height-lg: 32px;
+
+  --radius-control: 4px;
+  --radius-panel: 6px;
+  --radius-pill: 50%;
+
+  --border-width: 1px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Neutral surfaces & text — theme-dependent.
+ * Light is the Design System default.
+ * -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-surface: #f7f8fa;
+  --color-surface-hover: #eef0f3;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-overlay: rgba(15, 23, 42, 0.4);
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+}
+
+[data-theme="dark"] {
+  --color-bg: #0b0c0e;
+  --color-surface: #131417;
+  --color-surface-hover: #1b1d21;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --color-text-primary: #e6e8eb;
+  --color-text-secondary: #9aa1ac;
+  --color-text-tertiary: #6b7280;
+}
+
+/* ----------------------------------------------------------------------------
+ * Cross-cutting base rules that follow directly from the token set.
+ * -------------------------------------------------------------------------- */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-ui-size);
+  line-height: var(--text-ui-line);
+}
+
+/* Flat IDE density: hierarchy via borders, not shadows. */
+* {
+  box-sizing: border-box;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-ring);
+  outline-offset: 1px;
+  border-radius: var(--radius-control);
+}

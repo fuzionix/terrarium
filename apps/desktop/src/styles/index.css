@@ -1,0 +1,9 @@
+/*
+ * Global stylesheet entry point.
+ *
+ * Import order matters only in that font-face declarations and token variables should be available before any component renders; 
+ * Tailwind's own reset/layers are declared first per Tailwind v4 convention.
+ */
+@import "tailwindcss";
+@import "../shared/fonts.css";
+@import "../shared/tokens.css";
