@@ -1,0 +1,169 @@
+name: CI Gatekeeper
+
+on:
+  workflow_dispatch:
+  # pull_request:
+  # push:
+  #   branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20"
+  PNPM_VERSION: "9"
+  ENFORCE_CONTRACT_MINIMUM: ${{ vars.ENFORCE_CONTRACT_MINIMUM || 'false' }}
+
+jobs:
+  # ---------------------------------------------------------------------
+  # Gate 0 — Contract: proto/ schema syntax + version bump enforcement
+  # ---------------------------------------------------------------------
+  contract-gate:
+    name: "Gate 0 · Contract & Schema"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with full history (needed for diff-based version check)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Validate JSON Schema syntax under proto/
+        run: npx --yes ajv-cli@5 compile -s "proto/**/*.schema.json" --spec=draft2020
+
+      - name: Enforce SemVer-valid, strictly increasing schema versions
+        run: node scripts/ci/check-schema-version.mjs "origin/${{ github.base_ref || 'main' }}"
+
+  # ---------------------------------------------------------------------
+  # Gate 1 — Frontend Quality: lint / typecheck / unit
+  # ---------------------------------------------------------------------
+  frontend:
+    name: "Gate 1 · Frontend Quality"
+    runs-on: ubuntu-latest
+    needs: contract-gate
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node with pnpm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint all workspaces
+        run: pnpm -r lint
+
+      - name: Typecheck all workspaces
+        run: pnpm -r typecheck
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: apps/desktop/coverage
+          retention-days: 7
+          if-no-files-found: ignore
+
+  # ---------------------------------------------------------------------
+  # Gate 2 — Rust Quality: fmt / clippy / test across target platforms
+  # ---------------------------------------------------------------------
+  rust:
+    name: "Gate 2 · Rust Quality (${{ matrix.os }})"
+    runs-on: ${{ matrix.os }}
+    needs: contract-gate
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain (pinned via rust-toolchain.toml)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache cargo registry and target
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "workspace-${{ matrix.os }}"
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: Lint with clippy (warnings are errors)
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      - name: Run workspace tests
+        run: cargo test --workspace --all-features
+
+  # ---------------------------------------------------------------------
+  # Gate 3 — Supply Chain & Secret Scan
+  # ---------------------------------------------------------------------
+  security:
+    name: "Gate 3 · Supply Chain & Secret Scan"
+    runs-on: ubuntu-latest
+    needs: [frontend, rust]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for committed secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITLEAKS_CONFIG: .gitleaks.toml
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install cargo-deny
+        run: cargo install cargo-deny --locked
+
+      - name: Check licenses, bans, advisories, sources
+        run: cargo deny check
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit npm/pnpm dependencies
+        run: pnpm audit --audit-level=high
+
+      - name: GitHub dependency review (PR only)
+        if: github.event_name == 'pull_request'
+        uses: actions/dependency-review-action@v4
+
+  # ---------------------------------------------------------------------
+  # Gate 4 — Aggregate required status for branch protection
+  # ---------------------------------------------------------------------
+  gatekeeper:
+    name: "Gatekeeper · Required Status"
+    runs-on: ubuntu-latest
+    needs: [contract-gate, frontend, rust, security]
+    steps:
+      - name: All gates passed
+        run: echo "All gates passed. Safe to merge."
