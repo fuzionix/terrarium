@@ -32,7 +32,7 @@
   /* --------------------------------------------------------------------------
    * 02 — Typography
    * ------------------------------------------------------------------------ */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans: "Figtree", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
 
   /* text-micro */
@@ -55,6 +55,11 @@
   --text-title-line: 20px;
   --text-title-weight: 600;
 
+  /* text-main */
+  --text-main-size: 16px;
+  --text-main-line: 24px;
+  --text-main-weight: 400;
+
   /* --------------------------------------------------------------------------
    * 03 — Spacing, Radius & Density
    * ------------------------------------------------------------------------ */
@@ -62,8 +67,8 @@
   --control-height-md: 28px; /* default control height */
   --control-height-lg: 32px;
 
-  --radius-control: 4px;
-  --radius-panel: 6px;
+  --radius-control: 6px;
+  --radius-panel: 8px;
   --radius-pill: 50%;
 
   --border-width: 1px;

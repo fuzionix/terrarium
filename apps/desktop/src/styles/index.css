@@ -7,3 +7,54 @@
 @import "tailwindcss";
 @import "../shared/fonts.css";
 @import "../shared/tokens.css";
+
+@source "../../../packages/ui-sdk/src";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  /* Brand & Semantic Colors */
+  --color-brand: #2648f2;
+  --color-brand-hover: #1e3ecb;
+  --color-brand-muted: rgba(38, 72, 242, 0.12);
+  --color-brand-ring: rgba(38, 72, 242, 0.6);
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-system: #a78bfa;
+  --color-remote: #22d3ee;
+  --color-observe: #64748b;
+  --color-high-risk: #fb7185;
+
+  /* Border Radius */
+  --radius-control: 6px;
+  --radius-panel: 8px;
+
+  /* Font Families */
+  --font-sans: "Figtree", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Typography Sizes */
+  --text-micro: 11px;
+  --text-micro--line-height: 1.2;
+  --text-micro--font-weight: 500;
+
+  --text-compact: 12px;
+  --text-compact--line-height: 16px;
+
+  --text-ui: 13px;
+  --text-ui--line-height: 20px;
+
+  --text-title: 14px;
+  --text-title--line-height: 20px;
+  --text-title--font-weight: 600;
+
+  --text-main: 16px;
+  --text-main--line-height: 24px;
+
+  /* Custom Control Spacing */
+  --spacing-ctrl-sm: 24px;
+  --spacing-ctrl-md: 28px;
+  --spacing-ctrl-lg: 32px;
+}

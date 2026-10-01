@@ -22,6 +22,11 @@
       "@terrarium/ui-sdk": ["../../packages/ui-sdk/src"]
     }
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    ".storybook/preview.tsx",
+    ".storybook/manager.ts",
+    ".storybook/theme.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

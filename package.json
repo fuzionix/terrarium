@@ -9,6 +9,8 @@
   "scripts": {
     "dev:desktop": "pnpm --filter @terrarium/desktop tauri dev",
     "build:desktop": "pnpm --filter @terrarium/desktop tauri build",
+    "storybook": "pnpm --filter @terrarium/desktop storybook",
+    "build-storybook": "pnpm --filter @terrarium/desktop build-storybook",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck"

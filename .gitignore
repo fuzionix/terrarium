@@ -25,3 +25,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# Storybook
+storybook-static/
