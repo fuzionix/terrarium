@@ -63,9 +63,10 @@
   /* --------------------------------------------------------------------------
    * 03 — Spacing, Radius & Density
    * ------------------------------------------------------------------------ */
-  --control-height-sm: 24px;
-  --control-height-md: 28px; /* default control height */
-  --control-height-lg: 32px;
+  --control-height-sm: 28px;
+  --control-height-md: 32px; /* default control height */
+  --control-height-lg: 36px;
+  --control-height-xl: 40px;
 
   --radius-control: 6px;
   --radius-panel: 8px;

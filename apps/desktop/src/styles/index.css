@@ -54,7 +54,8 @@
   --text-main--line-height: 24px;
 
   /* Custom Control Spacing */
-  --spacing-ctrl-sm: 24px;
-  --spacing-ctrl-md: 28px;
-  --spacing-ctrl-lg: 32px;
+  --spacing-ctrl-sm: 28px;
+  --spacing-ctrl-md: 32px;
+  --spacing-ctrl-lg: 36px;
+  --spacing-ctrl-xl: 40px;
 }
