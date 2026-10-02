@@ -62,7 +62,7 @@ function clampProgress(value: number): number {
 
 type BaseButtonProps = React.ComponentPropsWithoutRef<typeof BaseButton>;
 
-export interface ButtonProps extends Omit<BaseButtonProps, "className" | "render"> {
+export interface ButtonProps extends Omit<BaseButtonProps, "className"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
@@ -89,6 +89,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       type = "button",
       className,
       children,
+      render,
       ...rest
     },
     ref,
@@ -104,6 +105,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <BaseButton
         ref={ref}
         type={type}
+        render={render}
         disabled={isDisabled}
         focusableWhenDisabled={shouldBeFocusableWhenDisabled}
         aria-busy={isLoading || undefined}
@@ -117,11 +119,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           "inline-flex select-none items-center justify-center whitespace-nowrap cursor-pointer",
           "rounded-control font-sans font-medium",
           "transition-all duration-75",
-          "active:not-data-disabled:translate-y-px",
+          "enabled:active:translate-y-px",
           "outline-none focus-visible:ring-2 focus-visible:ring-brand-ring",
           "focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-bg)",
-          "data-disabled:transform-none data-disabled:active:translate-y-0",
-          "data-disabled:pointer-events-none data-disabled:not-data-loading:opacity-40",
+          "disabled:transform-none disabled:active:translate-y-0",
+          "disabled:pointer-events-none",
+          "disabled:not-data-loading:opacity-40 data-loading:pointer-events-none",
           "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:stroke-2",
           isIconOnly ? ICON_ONLY_SIZE_CLASSES[size] : SIZE_CLASSES[size],
           VARIANT_CLASSES[variant],
