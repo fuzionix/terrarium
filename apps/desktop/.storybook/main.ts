@@ -7,6 +7,7 @@ const config: StorybookConfig = {
   stories: [
     "../src/**/*.mdx",
     "../src/shared/ui/**/*.stories.@(ts|tsx)",
+    "../src/shared/characters/**/*.stories.@(ts|tsx)",
     "../src/workspace/**/*.stories.@(ts|tsx)",
     "../src/features/**/*.stories.@(ts|tsx)",
     "../../../packages/ui-sdk/src/**/*.stories.@(ts|tsx)",

@@ -48,7 +48,7 @@
   /* text-ui */
   --text-ui-size: 13px;
   --text-ui-line: 20px;
-  --text-ui-weight: 400;
+  --text-ui-weight: 500;
 
   /* text-title */
   --text-title-size: 14px;
@@ -119,6 +119,7 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: var(--text-ui-size);
+  font-weight: var(--text-ui-weight);
   line-height: var(--text-ui-line);
 }
 

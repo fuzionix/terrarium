@@ -1,0 +1,32 @@
+.buddy {
+  overflow: visible;
+}
+
+.buddy-body,
+.buddy-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.buddy[data-live="true"] .buddy-eyes {
+  animation: buddy-blink 5.0s ease-in-out infinite;
+}
+
+@keyframes buddy-blink {
+  0%,
+  38%,
+  46%,
+  100% {
+    transform: scaleY(1);
+  }
+  42% {
+    transform: scaleY(0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .buddy[data-live="true"] .buddy-body,
+  .buddy[data-live="true"] .buddy-eyes {
+    animation: none;
+  }
+}
