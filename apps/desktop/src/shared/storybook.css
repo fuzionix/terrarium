@@ -1,0 +1,6 @@
+.sb-show-main,
+.docs-story,
+.sbdocs-preview {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+}
