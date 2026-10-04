@@ -16,5 +16,5 @@ export {
   resolveDimension,
 } from "./dimensions";
 export type { FeatureDimension, FeatureSlotName } from "./dimensions";
-export { aliasNibbles, formatNibbles, parseIdentitySeed } from "./seed";
+export { parseIdentitySeed } from "./seed";
 export type { IdentitySeed, IdentitySeedKind } from "./seed";

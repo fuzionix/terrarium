@@ -18,11 +18,12 @@ const meta: Meta<typeof Avatar> = {
   },
   args: {
     label: "Tera",
-    seed: "Tera",
+    seed: "tera",
     size: "lg",
     isLive: true,
   },
   argTypes: {
+    seed: { control: "text" },
     size: { control: "select", options: ["sm", "md", "lg", "xl"] },
     status: {
       control: "select",

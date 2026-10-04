@@ -1,19 +1,10 @@
 import * as React from "react";
 import { cn } from "@/shared/ui/utils/cn";
-import { nibbleForSlot, resolveDimension } from "./dimensions";
+import { nibbleForSlot, resolveDimension, FEATURE_SLOTS } from "./dimensions";
 import { EYE_SPECS, EYE_DIMENSION, type EyeStyle } from "./eyes";
 import { PALETTE_DIMENSION, paletteById, paletteByNibble, type MotePaletteId } from "./palette";
 import { parseIdentitySeed } from "./seed";
 import "./mote.css";
-
-function phaseFromSeed(seed: string): number {
-  let hash = 2166136261;
-  for (let index = 0; index < seed.length; index += 1) {
-    hash ^= seed.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-  return ((hash >>> 0) % 40) / 10;
-}
 
 export interface MoteProps extends Omit<React.SVGProps<SVGSVGElement>, "seed"> {
   seed?: string;
@@ -29,9 +20,11 @@ export const Mote = React.forwardRef<SVGSVGElement, MoteProps>(function Mote(
   const identity = parseIdentitySeed(seed);
   const paletteId = palette ?? resolveDimension(PALETTE_DIMENSION, identity);
   const eyeStyle = eye ?? resolveDimension(EYE_DIMENSION, identity);
-  const colors = palette ? paletteById(palette) : paletteByNibble(nibbleForSlot(identity, 0));
+  const colors = palette 
+    ? paletteById(palette) 
+    : paletteByNibble(nibbleForSlot(identity, FEATURE_SLOTS.palette));
   const spec = EYE_SPECS[eyeStyle];
-  const phase = phaseFromSeed(identity.raw);
+  const animationDelay = `-${identity.phase}s`;
 
   return (
     <svg
@@ -55,9 +48,8 @@ export const Mote = React.forwardRef<SVGSVGElement, MoteProps>(function Mote(
         height="30"
         rx="9.6"
         fill={colors.body}
-        style={{ animationDelay: `${phase}s` }}
       />
-      <g className="mote-eyes" style={{ animationDelay: `${phase}s` }}>
+      <g className="mote-eyes" style={{ animationDelay }}>
         <EyeLine stroke={colors.eye} width={spec.strokeWidth} line={spec.left} />
         <EyeLine stroke={colors.eye} width={spec.strokeWidth} line={spec.right} />
       </g>
