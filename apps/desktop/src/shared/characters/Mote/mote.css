@@ -2,10 +2,13 @@
   overflow: visible;
 }
 
-.mote-body,
-.mote-eyes {
+.mote-body {
   transform-box: fill-box;
   transform-origin: center;
+}
+
+.mote-eyes {
+  clip-path: inset(-50% -50% -50% -50%);
 }
 
 .mote[data-live="true"] .mote-eyes {
@@ -17,10 +20,10 @@
   38%,
   46%,
   100% {
-    transform: scaleY(1);
+    clip-path: inset(-50% -50% -50% -50%);
   }
   42% {
-    transform: scaleY(0.12);
+    clip-path: inset(48% -50% 48% -50%);
   }
 }
 

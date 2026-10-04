@@ -113,7 +113,7 @@ export const CustomCharacter: Story = {
               x2="12"
               y2="18"
               stroke="#22d3ee"
-              strokeWidth="3.4"
+              strokeWidth="4.6"
               strokeLinecap="round"
             />
             <line
@@ -122,7 +122,7 @@ export const CustomCharacter: Story = {
               x2="20"
               y2="18"
               stroke="#22d3ee"
-              strokeWidth="3.4"
+              strokeWidth="4.6"
               strokeLinecap="round"
             />
           </svg>
