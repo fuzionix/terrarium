@@ -82,7 +82,7 @@
 :root,
 [data-theme="light"] {
   --color-bg: #ffffff;
-  --color-surface: #f7f8fa;
+  --color-surface: #fdfdfe;
   --color-surface-hover: #eef0f3;
   --color-border: rgba(15, 23, 42, 0.08);
   --color-overlay: rgba(15, 23, 42, 0.4);
