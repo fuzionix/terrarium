@@ -1,0 +1,70 @@
+.mote {
+  overflow: visible;
+}
+
+.mote-body,
+.mote-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.mote[data-live="true"] .mote-eyes {
+  animation: mote-blink 5.0s ease-in-out infinite;
+}
+
+@keyframes mote-blink {
+  0%,
+  38%,
+  46%,
+  100% {
+    transform: scaleY(1);
+  }
+  42% {
+    transform: scaleY(0.12);
+  }
+}
+
+@keyframes mote-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12%);
+  }
+}
+
+@keyframes mote-shadow {
+  0%,
+  100% {
+    width: 50%;
+    opacity: 0.2;
+  }
+  50% {
+    width: 30%;
+    opacity: 0.1;
+  }
+}
+
+.avatar-floating {
+  animation: mote-float 3.2s ease-in-out infinite;
+}
+
+.avatar-shadow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1000px;
+  background-color: currentColor;
+  pointer-events: none;
+  animation: mote-shadow 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mote[data-live="true"] .mote-body,
+  .mote[data-live="true"] .mote-eyes,
+  .avatar-floating,
+  .avatar-shadow {
+    animation: none;
+  }
+}

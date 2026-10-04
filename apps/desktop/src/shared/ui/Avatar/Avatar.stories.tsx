@@ -21,6 +21,7 @@ const meta: Meta<typeof Avatar> = {
     seed: "tera",
     size: "lg",
     isLive: true,
+    isFloat: false,
   },
   argTypes: {
     seed: { control: "text" },
@@ -32,6 +33,7 @@ const meta: Meta<typeof Avatar> = {
     palette: { control: "select", options: [undefined, ...MOTE_PALETTES.map((item) => item.id)] },
     eye: { control: "select", options: [undefined, ...EYE_STYLES] },
     isLive: { control: "boolean" },
+    isFloat: { control: "boolean" },
   },
   tags: ["autodocs"],
 };
@@ -62,6 +64,14 @@ export const Status: Story = {
   ),
 };
 
+export const Floating: Story = {
+  args: {
+    isFloat: true,
+    status: "ready",
+    size: "xl",
+  },
+};
+
 export const UuidSeed: Story = {
   name: "UUID seed",
   render: () => (
@@ -89,6 +99,19 @@ export const Roster: Story = {
       {["tera", "moss", "ink", "lagoon", "coral", "iris", "amber", "paper", "quill", "orbit"].map(
         (seed) => (
           <Avatar key={seed} size="lg" seed={seed} label={seed} status="ready" />
+        ),
+      )}
+    </div>
+  ),
+};
+
+export const FloatingRoster: Story = {
+  name: "Floating roster (desynced phases)",
+  render: () => (
+    <div className="flex flex-wrap items-center gap-6 p-4">
+      {["tera", "moss", "ink", "lagoon", "coral"].map(
+        (seed) => (
+          <Avatar key={seed} size="xl" seed={seed} label={seed} status="ready" isFloat />
         ),
       )}
     </div>
