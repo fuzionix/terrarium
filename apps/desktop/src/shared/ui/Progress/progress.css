@@ -1,0 +1,21 @@
+@keyframes terrarium-progress-indeterminate {
+  0% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+.terrarium-progress-indicator[data-indeterminate] {
+  width: 38%;
+  animation: terrarium-progress-indeterminate 1.35s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terrarium-progress-indicator[data-indeterminate] {
+    width: 100%;
+    animation: none;
+    opacity: 0.45;
+  }
+}
