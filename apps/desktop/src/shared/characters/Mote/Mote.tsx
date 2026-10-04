@@ -2,9 +2,9 @@ import * as React from "react";
 import { cn } from "@/shared/ui/utils/cn";
 import { nibbleForSlot, resolveDimension } from "./dimensions";
 import { EYE_SPECS, EYE_DIMENSION, type EyeStyle } from "./eyes";
-import { PALETTE_DIMENSION, paletteById, paletteByNibble, type BuddyPaletteId } from "./palette";
+import { PALETTE_DIMENSION, paletteById, paletteByNibble, type MotePaletteId } from "./palette";
 import { parseIdentitySeed } from "./seed";
-import "./buddy.css";
+import "./mote.css";
 
 function phaseFromSeed(seed: string): number {
   let hash = 2166136261;
@@ -15,14 +15,14 @@ function phaseFromSeed(seed: string): number {
   return ((hash >>> 0) % 40) / 10;
 }
 
-export interface BuddyProps extends Omit<React.SVGProps<SVGSVGElement>, "seed"> {
+export interface MoteProps extends Omit<React.SVGProps<SVGSVGElement>, "seed"> {
   seed?: string;
-  palette?: BuddyPaletteId;
+  palette?: MotePaletteId;
   eye?: EyeStyle;
   isLive?: boolean;
 }
 
-export const Buddy = React.forwardRef<SVGSVGElement, BuddyProps>(function Buddy(
+export const Mote = React.forwardRef<SVGSVGElement, MoteProps>(function Mote(
   { seed = "tera", palette, eye, isLive = true, className, style, ...rest },
   ref,
 ) {
@@ -37,18 +37,18 @@ export const Buddy = React.forwardRef<SVGSVGElement, BuddyProps>(function Buddy(
     <svg
       ref={ref}
       viewBox="0 0 32 32"
-      data-slot="buddy"
+      data-slot="mote"
       data-seed-kind={identity.kind}
       data-palette={paletteId}
       data-eye={eyeStyle}
       data-live={isLive ? "true" : "false"}
       aria-hidden="true"
-      className={cn("buddy block size-full", className)}
+      className={cn("mote block size-full", className)}
       style={style}
       {...rest}
     >
       <rect
-        className="buddy-body"
+        className="mote-body"
         x="1"
         y="1"
         width="30"
@@ -57,7 +57,7 @@ export const Buddy = React.forwardRef<SVGSVGElement, BuddyProps>(function Buddy(
         fill={colors.body}
         style={{ animationDelay: `${phase}s` }}
       />
-      <g className="buddy-eyes" style={{ animationDelay: `${phase}s` }}>
+      <g className="mote-eyes" style={{ animationDelay: `${phase}s` }}>
         <EyeLine stroke={colors.eye} width={spec.strokeWidth} line={spec.left} />
         <EyeLine stroke={colors.eye} width={spec.strokeWidth} line={spec.right} />
       </g>

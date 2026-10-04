@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Buddy } from "./Buddy";
-import { BUDDY_PALETTES } from "./palette";
+import { Mote } from "./Mote";
+import { MOTE_PALETTES } from "./palette";
 import { EYE_STYLES } from "./eyes";
 
-const meta: Meta<typeof Buddy> = {
-  title: "Characters/Buddy",
-  component: Buddy,
+const meta: Meta<typeof Mote> = {
+  title: "Characters/Mote", 
+  component: Mote,
   parameters: {
     docs: {
       description: {
@@ -20,7 +20,7 @@ const meta: Meta<typeof Buddy> = {
   argTypes: {
     palette: {
       control: "select",
-      options: [undefined, ...BUDDY_PALETTES.map((palette) => palette.id)],
+      options: [undefined, ...MOTE_PALETTES.map((palette) => palette.id)],
     },
     eye: {
       control: "select",
@@ -39,7 +39,7 @@ const meta: Meta<typeof Buddy> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Buddy>;
+type Story = StoryObj<typeof Mote>;
 
 export const Playground: Story = {};
 
@@ -51,7 +51,7 @@ export const EyeVersions: Story = {
       {EYE_STYLES.map((eye) => (
         <figure key={eye} className="flex flex-col items-center gap-2">
           <div className="size-12">
-            <Buddy seed="eye-board" palette="brand" eye={eye} isLive={false} />
+            <Mote seed="eye-board" palette="brand" eye={eye} isLive={false} />
           </div>
           <figcaption className="text-compact text-(--color-text-secondary)">{eye}</figcaption>
         </figure>
@@ -64,10 +64,10 @@ export const Palette: Story = {
   decorators: [],
   render: () => (
     <div className="flex items-end gap-4">
-      {BUDDY_PALETTES.map((palette) => (
+      {MOTE_PALETTES.map((palette) => (
         <figure key={palette.id} className="flex flex-col items-center gap-2">
           <div className="size-12">
-            <Buddy seed={palette.id} palette={palette.id} eye="neutral" />
+            <Mote seed={palette.id} palette={palette.id} eye="neutral" />
           </div>
           <figcaption className="text-compact text-(--color-text-secondary)">{palette.id}</figcaption>
         </figure>

@@ -1,16 +1,16 @@
 export {
-  Buddy,
-  BUDDY_PALETTES,
+  Mote,
+  MOTE_PALETTES,
   EYE_STYLES,
   FEATURE_SLOTS,
   NEXT_FEATURE_SLOT,
   paletteById,
   parseIdentitySeed,
-} from "./Buddy";
+} from "./Mote";
 
 export type { 
-  BuddyPaletteId, 
-  BuddyProps, 
+  MotePaletteId, 
+  MoteProps, 
   EyeStyle, 
   IdentitySeed 
-} from "./Buddy";
+} from "./Mote";

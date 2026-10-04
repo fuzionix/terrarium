@@ -1,12 +1,12 @@
 import { defineDimension, FEATURE_SLOTS } from "./dimensions";
 
-export interface BuddyPalette {
+export interface MotePalette {
   id: string;
   body: string;
   eye: string;
 }
 
-export const BUDDY_PALETTES = [
+export const MOTE_PALETTES = [
   { id: "brand", body: "#2648f2", eye: "#f4f6ff" },
   { id: "iris", body: "#7c6cf0", eye: "#f5f3ff" },
   { id: "moss", body: "#3dbe7a", eye: "#052e16" },
@@ -23,9 +23,9 @@ export const BUDDY_PALETTES = [
   { id: "dusk", body: "#1e293b", eye: "#e2e8f0" },
   { id: "peach", body: "#fdba74", eye: "#431407" },
   { id: "glacier", body: "#7dd3fc", eye: "#0c4a6e" },
-] as const satisfies readonly BuddyPalette[];
+] as const satisfies readonly MotePalette[];
 
-export type BuddyPaletteId = (typeof BUDDY_PALETTES)[number]["id"];
+export type MotePaletteId = (typeof MOTE_PALETTES)[number]["id"];
 
 export const PALETTE_IDS = [
   "brand",
@@ -44,7 +44,7 @@ export const PALETTE_IDS = [
   "dusk",
   "peach",
   "glacier",
-] as const satisfies readonly BuddyPaletteId[];
+] as const satisfies readonly MotePaletteId[];
 
 export const PALETTE_DIMENSION = defineDimension(
   FEATURE_SLOTS.palette,
@@ -52,10 +52,10 @@ export const PALETTE_DIMENSION = defineDimension(
   PALETTE_IDS,
 );
 
-export function paletteById(id: BuddyPaletteId): BuddyPalette {
-  return BUDDY_PALETTES.find((palette) => palette.id === id) ?? BUDDY_PALETTES[0];
+export function paletteById(id: MotePaletteId): MotePalette {
+  return MOTE_PALETTES.find((palette) => palette.id === id) ?? MOTE_PALETTES[0];
 }
 
-export function paletteByNibble(nibble: number): BuddyPalette {
-  return BUDDY_PALETTES[nibble & 0xf] ?? BUDDY_PALETTES[0];
+export function paletteByNibble(nibble: number): MotePalette {
+  return MOTE_PALETTES[nibble & 0xf] ?? MOTE_PALETTES[0];
 }

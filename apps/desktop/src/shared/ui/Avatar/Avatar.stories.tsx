@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Avatar } from "./Avatar";
 import type { AvatarStatus } from "./Avatar";
-import { Buddy, BUDDY_PALETTES, EYE_STYLES } from "@/shared/characters";
+import { Mote, MOTE_PALETTES, EYE_STYLES } from "@/shared/characters";
 
 const STATUSES: AvatarStatus[] = ["ready", "running", "paused", "failed", "remote", "offline"];
 
@@ -12,7 +12,7 @@ const meta: Meta<typeof Avatar> = {
     docs: {
       description: {
         component:
-          "Avatar frame on Base UI `Avatar.Root` + `Avatar.Fallback`. The frame owns size, status, and focus. The glyph is a character slot; the default is Buddy. Display-name seeds are hashed into the same 32 nibble table.",
+          "Avatar frame on Base UI `Avatar.Root` + `Avatar.Fallback`. The frame owns size, status, and focus. The glyph is a character slot; the default is Mote. Display-name seeds are hashed into the same 32 nibble table.",
       },
     },
   },
@@ -28,7 +28,7 @@ const meta: Meta<typeof Avatar> = {
       control: "select",
       options: [undefined, ...STATUSES],
     },
-    palette: { control: "select", options: [undefined, ...BUDDY_PALETTES.map((item) => item.id)] },
+    palette: { control: "select", options: [undefined, ...MOTE_PALETTES.map((item) => item.id)] },
     eye: { control: "select", options: [undefined, ...EYE_STYLES] },
     isLive: { control: "boolean" },
   },
@@ -43,10 +43,10 @@ export const Playground: Story = {};
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-end gap-3">
-      <Avatar size="sm" seed="sm" label="Small buddy" />
-      <Avatar size="md" seed="md" label="Medium buddy" />
-      <Avatar size="lg" seed="lg" label="Large buddy" />
-      <Avatar size="xl" seed="xl" label="Extra large buddy" />
+      <Avatar size="sm" seed="sm" label="Small mote" />
+      <Avatar size="md" seed="md" label="Medium mote" />
+      <Avatar size="lg" seed="lg" label="Large mote" />
+      <Avatar size="xl" seed="xl" label="Extra large mote" />
     </div>
   ),
 };
@@ -98,7 +98,7 @@ export const CustomCharacter: Story = {
   name: "Character slot",
   render: () => (
     <div className="flex items-center gap-3">
-      <Avatar size="xl" label="Default buddy" seed="tera" />
+      <Avatar size="xl" label="Default mote" seed="tera" />
       <Avatar
         size="xl"
         label="Slotted character"
@@ -132,7 +132,7 @@ export const CustomCharacter: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Pass `character` to keep Avatar sizing, radius, status, and focus while swapping the glyph. Buddy stays importable on its own.",
+        story: "Pass `character` to keep Avatar sizing, radius, status, and focus while swapping the glyph. Mote stays importable on its own.",
       },
     },
   },
@@ -150,14 +150,14 @@ export const Interactive: Story = {
   ),
 };
 
-export const WithBuddyDirect: Story = {
-  name: "Buddy outside the frame",
+export const WithMoteDirect: Story = {
+  name: "Mote outside the frame",
   render: () => (
     <div className="flex items-center gap-4">
       <div className="size-16">
-        <Buddy seed="orbit" eye="focus" />
+        <Mote seed="orbit" eye="focus" isLive={false} />
       </div>
-      <Avatar size="xl" seed="orbit" eye="focus" label="Same buddy, framed" />
+      <Avatar size="xl" seed="orbit" eye="focus" label="Same mote, framed" />
     </div>
   ),
 };

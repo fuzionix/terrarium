@@ -1,9 +1,9 @@
-export { Buddy } from "./Buddy";
-export type { BuddyProps } from "./Buddy";
+export { Mote } from "./Mote";
+export type { MoteProps } from "./Mote";
 export { EYE_DIMENSION, EYE_SPECS, EYE_STYLES, eyeByNibble } from "./eyes";
 export type { EyeSpec, EyeStroke, EyeStyle } from "./eyes";
-export { BUDDY_PALETTES, PALETTE_DIMENSION, PALETTE_IDS, paletteById, paletteByNibble } from "./palette";
-export type { BuddyPalette, BuddyPaletteId } from "./palette";
+export { MOTE_PALETTES, PALETTE_DIMENSION, PALETTE_IDS, paletteById, paletteByNibble } from "./palette";
+export type { MotePalette, MotePaletteId } from "./palette";
 export {
   FEATURE_SLOT_COUNT,
   FEATURE_SLOTS,

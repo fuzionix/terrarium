@@ -1,18 +1,18 @@
-.buddy {
+.mote {
   overflow: visible;
 }
 
-.buddy-body,
-.buddy-eyes {
+.mote-body,
+.mote-eyes {
   transform-box: fill-box;
   transform-origin: center;
 }
 
-.buddy[data-live="true"] .buddy-eyes {
-  animation: buddy-blink 5.0s ease-in-out infinite;
+.mote[data-live="true"] .mote-eyes {
+  animation: mote-blink 5.0s ease-in-out infinite;
 }
 
-@keyframes buddy-blink {
+@keyframes mote-blink {
   0%,
   38%,
   46%,
@@ -25,8 +25,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .buddy[data-live="true"] .buddy-body,
-  .buddy[data-live="true"] .buddy-eyes {
+  .mote[data-live="true"] .mote-body,
+  .mote[data-live="true"] .mote-eyes {
     animation: none;
   }
 }
