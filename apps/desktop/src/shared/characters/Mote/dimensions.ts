@@ -2,10 +2,9 @@ import { parseIdentitySeed, type IdentitySeed } from "./seed";
 
 export const RANDOM_TAIL_NIBBLES = [31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20] as const;
 export const FEATURE_SLOT_COUNT = RANDOM_TAIL_NIBBLES.length;
-export const NEXT_FEATURE_SLOT = 2;
+export const NEXT_FEATURE_SLOT = 1;
 export const FEATURE_SLOTS = {
   palette: 0,
-  eye: 1,
 } as const;
 
 export type FeatureSlotName = keyof typeof FEATURE_SLOTS;
@@ -61,7 +60,6 @@ export function readFeatureSlots(seedInput: string | undefined): {
     seed,
     slots: {
       palette: nibbleForSlot(seed, FEATURE_SLOTS.palette),
-      eye: nibbleForSlot(seed, FEATURE_SLOTS.eye),
     },
   };
 }

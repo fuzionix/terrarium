@@ -1,7 +1,6 @@
 export {
   Mote,
   MOTE_PALETTES,
-  EYE_STYLES,
   FEATURE_SLOTS,
   NEXT_FEATURE_SLOT,
   paletteById,
@@ -11,6 +10,5 @@ export {
 export type { 
   MotePaletteId, 
   MoteProps, 
-  EyeStyle, 
   IdentitySeed 
 } from "./Mote";

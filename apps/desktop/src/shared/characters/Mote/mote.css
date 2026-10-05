@@ -27,6 +27,28 @@
   }
 }
 
+@keyframes mote-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12%);
+  }
+}
+
+@keyframes mote-shadow {
+  0%,
+  100% {
+    width: 50%;
+    opacity: 0.2;
+  }
+  50% {
+    width: 30%;
+    opacity: 0.1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mote[data-live="true"] .mote-body,
   .mote[data-live="true"] .mote-eyes {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Mote } from "./Mote";
 import { MOTE_PALETTES } from "./palette";
-import { EYE_STYLES } from "./eyes";
 
 const meta: Meta<typeof Mote> = {
   title: "Characters/Mote", 
@@ -22,10 +21,6 @@ const meta: Meta<typeof Mote> = {
       control: "select",
       options: [undefined, ...MOTE_PALETTES.map((palette) => palette.id)],
     },
-    eye: {
-      control: "select",
-      options: [undefined, ...EYE_STYLES],
-    },
     isLive: { control: "boolean" },
   },
   decorators: [
@@ -43,23 +38,6 @@ type Story = StoryObj<typeof Mote>;
 
 export const Playground: Story = {};
 
-export const EyeVersions: Story = {
-  name: "Eye versions",
-  decorators: [],
-  render: () => (
-    <div className="flex items-end gap-4">
-      {EYE_STYLES.map((eye) => (
-        <figure key={eye} className="flex flex-col items-center gap-2">
-          <div className="size-12">
-            <Mote seed="eye-board" palette="brand" eye={eye} isLive={false} />
-          </div>
-          <figcaption className="text-compact text-(--color-text-secondary)">{eye}</figcaption>
-        </figure>
-      ))}
-    </div>
-  ),
-};
-
 export const Palette: Story = {
   decorators: [],
   render: () => (
@@ -67,7 +45,7 @@ export const Palette: Story = {
       {MOTE_PALETTES.map((palette) => (
         <figure key={palette.id} className="flex flex-col items-center gap-2">
           <div className="size-12">
-            <Mote seed={palette.id} palette={palette.id} eye="neutral" />
+            <Mote seed={palette.id} palette={palette.id} />
           </div>
           <figcaption className="text-compact text-(--color-text-secondary)">{palette.id}</figcaption>
         </figure>
@@ -77,5 +55,5 @@ export const Palette: Story = {
 };
 
 export const Still: Story = {
-  args: { isLive: false, eye: "neutral", palette: "ink" },
+  args: { isLive: false, palette: "ink" },
 };

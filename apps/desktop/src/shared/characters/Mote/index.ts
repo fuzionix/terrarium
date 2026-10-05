@@ -1,7 +1,5 @@
 export { Mote } from "./Mote";
 export type { MoteProps } from "./Mote";
-export { EYE_DIMENSION, EYE_SPECS, EYE_STYLES, eyeByNibble } from "./eyes";
-export type { EyeSpec, EyeStroke, EyeStyle } from "./eyes";
 export { MOTE_PALETTES, PALETTE_DIMENSION, PALETTE_IDS, paletteById, paletteByNibble } from "./palette";
 export type { MotePalette, MotePaletteId } from "./palette";
 export {

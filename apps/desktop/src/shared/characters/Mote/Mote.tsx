@@ -1,29 +1,31 @@
 import * as React from "react";
 import { cn } from "@/shared/ui/utils/cn";
 import { nibbleForSlot, resolveDimension, FEATURE_SLOTS } from "./dimensions";
-import { EYE_SPECS, EYE_DIMENSION, type EyeStyle } from "./eyes";
 import { PALETTE_DIMENSION, paletteById, paletteByNibble, type MotePaletteId } from "./palette";
 import { parseIdentitySeed } from "./seed";
 import "./mote.css";
 
+const EYE_SPEC = {
+  strokeWidth: 4.6,
+  left: { x1: 12, y1: 12.6, x2: 12, y2: 18.4 },
+  right: { x1: 20, y1: 12.6, x2: 20, y2: 18.4 },
+} as const;
+
 export interface MoteProps extends Omit<React.SVGProps<SVGSVGElement>, "seed"> {
   seed?: string;
   palette?: MotePaletteId;
-  eye?: EyeStyle;
   isLive?: boolean;
 }
 
 export const Mote = React.forwardRef<SVGSVGElement, MoteProps>(function Mote(
-  { seed = "tera", palette, eye, isLive = true, className, style, ...rest },
+  { seed = "tera", palette, isLive = true, className, style, ...rest },
   ref,
 ) {
   const identity = parseIdentitySeed(seed);
   const paletteId = palette ?? resolveDimension(PALETTE_DIMENSION, identity);
-  const eyeStyle = eye ?? resolveDimension(EYE_DIMENSION, identity);
   const colors = palette 
     ? paletteById(palette) 
     : paletteByNibble(nibbleForSlot(identity, FEATURE_SLOTS.palette));
-  const spec = EYE_SPECS[eyeStyle];
   const animationDelay = `-${identity.phase}s`;
 
   return (
@@ -33,7 +35,6 @@ export const Mote = React.forwardRef<SVGSVGElement, MoteProps>(function Mote(
       data-slot="mote"
       data-seed-kind={identity.kind}
       data-palette={paletteId}
-      data-eye={eyeStyle}
       data-live={isLive ? "true" : "false"}
       aria-hidden="true"
       className={cn("mote block size-full", className)}
@@ -50,8 +51,8 @@ export const Mote = React.forwardRef<SVGSVGElement, MoteProps>(function Mote(
         fill={colors.body}
       />
       <g className="mote-eyes" style={{ animationDelay }}>
-        <EyeLine stroke={colors.eye} width={spec.strokeWidth} line={spec.left} />
-        <EyeLine stroke={colors.eye} width={spec.strokeWidth} line={spec.right} />
+        <EyeLine stroke={colors.eye} width={EYE_SPEC.strokeWidth} line={EYE_SPEC.left} />
+        <EyeLine stroke={colors.eye} width={EYE_SPEC.strokeWidth} line={EYE_SPEC.right} />
       </g>
     </svg>
   );

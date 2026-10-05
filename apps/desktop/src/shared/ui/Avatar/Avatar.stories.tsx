@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Avatar } from "./Avatar";
 import type { AvatarStatus } from "./Avatar";
-import { Mote, MOTE_PALETTES, EYE_STYLES } from "@/shared/characters";
+import { Mote, MOTE_PALETTES } from "@/shared/characters";
 
 const STATUSES: AvatarStatus[] = ["ready", "running", "paused", "failed", "remote", "offline"];
 
@@ -31,7 +31,6 @@ const meta: Meta<typeof Avatar> = {
       options: [undefined, ...STATUSES],
     },
     palette: { control: "select", options: [undefined, ...MOTE_PALETTES.map((item) => item.id)] },
-    eye: { control: "select", options: [undefined, ...EYE_STYLES] },
     isLive: { control: "boolean" },
     isFloat: { control: "boolean" },
   },
@@ -179,9 +178,9 @@ export const WithMoteDirect: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <div className="size-16">
-        <Mote seed="orbit" eye="focus" isLive={false} />
+        <Mote seed="orbit" isLive={false} />
       </div>
-      <Avatar size="xl" seed="orbit" eye="focus" label="Same mote, framed" />
+      <Avatar size="xl" seed="orbit" label="Same mote, framed" />
     </div>
   ),
 };
