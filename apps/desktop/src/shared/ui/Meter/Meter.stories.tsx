@@ -30,6 +30,7 @@ const meta: Meta<typeof Meter> = {
     },
     value: { control: { type: "number", min: 0, max: 100 } },
     showValue: { control: "boolean" },
+    secondaryValue: { control: { type: "number", min: 0, max: 100 } },
   },
   tags: ["autodocs"],
 };
@@ -290,6 +291,35 @@ export const Parts: Story = {
       description: {
         story:
           "Observation-plane status bar. Compose `MeterRoot`, `MeterLabel`, `MeterTrack`, `MeterIndicator`, and `MeterValue` when the stacked layout is too tall. Indicator width still comes from Base UI.",
+      },
+    },
+  },
+};
+
+export const WithSecondaryBar: Story = {
+  name: "With secondary bar",
+  render: () => (
+    <div className="flex w-80 flex-col gap-4">
+      <Meter
+        label="Current vs previous"
+        description="Secondary shows last period when higher"
+        value={42}
+        secondaryValue={67}
+        valueLabel="42%"
+      />
+      <Meter
+        label="Within previous"
+        value={55}
+        secondaryValue={40}
+        valueLabel="55%"
+      />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A lighter secondary bar of the same tone appears behind the main indicator only when `secondaryValue` exceeds the current `value`.",
       },
     },
   },

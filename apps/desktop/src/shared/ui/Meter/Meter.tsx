@@ -44,6 +44,16 @@ const INDICATOR_TONE_CLASSES: Record<MeterResolvedTone, string> = {
   observe: "bg-observe",
 };
 
+const SECONDARY_INDICATOR_TONE_CLASSES: Record<MeterResolvedTone, string> = {
+  brand: "bg-brand/30",
+  success: "bg-success/30",
+  warning: "bg-warning/30",
+  danger: "bg-danger/30",
+  system: "bg-system/30",
+  remote: "bg-remote/30",
+  observe: "bg-observe/30",
+};
+
 const VALUE_TONE_CLASSES: Record<MeterResolvedTone, string> = {
   brand: "text-(--color-text-primary)",
   success: "text-(--color-text-primary)",
@@ -82,6 +92,7 @@ export interface MeterProps
   optimum?: number;
   showValue?: boolean;
   markers?: MeterMarker[];
+  secondaryValue?: number;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -173,6 +184,7 @@ export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
       optimum,
       showValue = true,
       markers,
+      secondaryValue,
       className,
       style,
       value,
@@ -185,6 +197,8 @@ export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
   ) {
     const descriptionId = React.useId();
     const resolvedTone = resolveMeterTone(tone, value, min, max, low, high, optimum);
+    const showSecondaryBar =
+      secondaryValue != null && secondaryValue > value;
     const valueChildren =
       typeof valueLabel === "function"
         ? valueLabel
@@ -235,9 +249,20 @@ export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
               TRACK_SIZE_CLASSES[size],
             )}
           >
+            {showSecondaryBar ? (
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute inset-y-0 left-0 rounded-full",
+                  "transition-[width] duration-200 ease-out motion-reduce:transition-none",
+                  SECONDARY_INDICATOR_TONE_CLASSES[resolvedTone],
+                )}
+                style={{ width: markerOffset(secondaryValue, min, max) }}
+              />
+            ) : null}
             <BaseMeter.Indicator
               className={cn(
-                "h-full rounded-full",
+                "relative z-10 h-full rounded-full",
                 "transition-[width] duration-200 ease-out motion-reduce:transition-none",
                 INDICATOR_TONE_CLASSES[resolvedTone],
               )}
