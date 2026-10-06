@@ -161,6 +161,18 @@ export const CustomCharacter: Story = {
   },
 };
 
+export const Gaze: Story = {
+  name: "Gaze",
+  render: () => (
+    <div className="flex items-end gap-4">
+      <Avatar size="xl" seed="tera" label="Look left" look={{ x: -0.75, y: 0 }} status="ready" />
+      <Avatar size="xl" seed="tera" label="Look ahead" look={{ x: 0, y: 0 }} status="ready" />
+      <Avatar size="xl" seed="tera" label="Look right" look={{ x: 0.75, y: 0 }} status="ready" />
+      <Avatar size="xl" seed="tera" label="Look up-right" look={{ x: 0.7, y: 0.55 }} status="ready" />
+    </div>
+  ),
+};
+
 export const Interactive: Story = {
   render: () => (
     <Avatar

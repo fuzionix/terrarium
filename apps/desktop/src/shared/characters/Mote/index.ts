@@ -1,5 +1,5 @@
 export { Mote } from "./Mote";
-export type { MoteProps } from "./Mote";
+export type { MoteProps, MoteLook } from "./Mote";
 export { MOTE_PALETTES, PALETTE_DIMENSION, PALETTE_IDS, paletteById, paletteByNibble } from "./palette";
 export type { MotePalette, MotePaletteId } from "./palette";
 export {

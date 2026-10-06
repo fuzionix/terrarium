@@ -3,18 +3,20 @@ import { Mote } from "./Mote";
 import { MOTE_PALETTES } from "./palette";
 
 const meta: Meta<typeof Mote> = {
-  title: "Characters/Mote", 
+  title: "Characters/Mote",
   component: Mote,
   parameters: {
     docs: {
       description: {
-        component: "Character design system. Rounded-square body and thick round-cap eye strokes only. No raster and no initials. Avatar chrome does not live here.",
+        component:
+          "Character design system. Rounded-square body and thick round-cap eye strokes only. Eyes slide on a cylindrical rounded box; rim poses foreshorten and protrude. No raster and no initials. Avatar chrome does not live here.",
       },
     },
   },
   args: {
     seed: "tera",
     isLive: true,
+    look: { x: 0, y: 0 },
   },
   argTypes: {
     palette: {
@@ -22,6 +24,7 @@ const meta: Meta<typeof Mote> = {
       options: [undefined, ...MOTE_PALETTES.map((palette) => palette.id)],
     },
     isLive: { control: "boolean" },
+    look: { control: "object" },
   },
   decorators: [
     (Story) => (
@@ -56,4 +59,11 @@ export const Palette: Story = {
 
 export const Still: Story = {
   args: { isLive: false, palette: "ink" },
+};
+
+export const Gaze: Story = {
+  args: {
+    look: { x: 0.5, y: -0.3 },
+    palette: "lemon",
+  },
 };

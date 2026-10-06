@@ -10,5 +10,6 @@ export {
 export type { 
   MotePaletteId, 
   MoteProps, 
+  MoteLook,
   IdentitySeed 
 } from "./Mote";

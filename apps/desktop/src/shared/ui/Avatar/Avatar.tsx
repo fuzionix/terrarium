@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Avatar as BaseAvatar } from "@base-ui/react/avatar";
-import { Mote, parseIdentitySeed, type MotePaletteId } from "@/shared/characters";
+import { Mote, parseIdentitySeed, type MoteLook, type MotePaletteId } from "@/shared/characters";
 import { cn } from "@/shared/ui/utils/cn";
 import "./avatar.css";
 
@@ -54,6 +54,7 @@ export interface AvatarProps extends Omit<BaseAvatarProps, "className" | "childr
   label?: string;
   seed?: string;
   palette?: MotePaletteId;
+  look?: MoteLook;
   isLive?: boolean;
   isFloat?: boolean;
   character?: React.ReactNode;
@@ -68,6 +69,7 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(function Av
     label,
     seed = "tera",
     palette,
+    look,
     isLive = true,
     isFloat = false,
     character,
@@ -120,7 +122,7 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(function Av
       >
         <BaseAvatar.Fallback className="flex size-full items-center justify-center overflow-hidden">
           {character ?? (
-            <Mote seed={seed} palette={palette} isLive={isLive} />
+            <Mote seed={seed} palette={palette} isLive={isLive} look={look} />
           )}
         </BaseAvatar.Fallback>
         {status ? (
