@@ -54,6 +54,18 @@ const VALUE_TONE_CLASSES: Record<MeterResolvedTone, string> = {
   observe: "text-(--color-text-secondary)",
 };
 
+const MARKER_GUTTER_CLASSES: Record<MeterSize, string> = {
+  sm: "py-1",
+  md: "py-1.5",
+  lg: "py-2",
+};
+
+const MARKER_STEM_CLASSES: Record<MeterSize, string> = {
+  sm: "h-2 w-px",
+  md: "h-3 w-0.5",
+  lg: "h-4 w-0.5",
+};
+
 type BaseMeterRootProps = React.ComponentPropsWithoutRef<typeof BaseMeter.Root>;
 
 export interface MeterProps
@@ -109,6 +121,43 @@ function markerOffset(value: number, min: number, max: number): string {
   const span = max - min;
   if (span === 0) return "0%";
   return `${clamp(((value - min) / span) * 100, 0, 100)}%`;
+}
+
+function MeterThresholdMark({
+  marker,
+  min,
+  max,
+  size,
+}: {
+  marker: MeterMarker;
+  min: number;
+  max: number;
+  size: MeterSize;
+}) {
+  const offset = markerOffset(marker.value, min, max);
+  const pct = Number.parseFloat(offset);
+  const atStart = pct <= 2;
+  const atEnd = pct >= 98;
+
+  return (
+    <span
+      title={marker.label}
+      aria-hidden="true"
+      className={cn(
+        "absolute top-1/2 z-10 flex -translate-y-1/2 flex-col items-center",
+        atStart ? "translate-x-0" : atEnd ? "-translate-x-full" : "-translate-x-1/2",
+      )}
+      style={{ left: offset }}
+    >
+      <span
+        className={cn(
+          "-my-px rounded-full bg-(--color-text-secondary)",
+          "shadow-[0_0_0_1px_var(--color-surface)]",
+          MARKER_STEM_CLASSES[size],
+        )}
+      />
+    </span>
+  );
 }
 
 export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
@@ -174,29 +223,36 @@ export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
             </BaseMeter.Value>
           ) : null}
         </span>
-        <BaseMeter.Track
+        <div
           className={cn(
-            "relative isolate w-full overflow-hidden rounded-full bg-(--color-surface-hover)",
-            TRACK_SIZE_CLASSES[size],
+            "relative w-full overflow-visible",
+            markers?.length ? MARKER_GUTTER_CLASSES[size] : undefined,
           )}
         >
-          <BaseMeter.Indicator
+          <BaseMeter.Track
             className={cn(
-              "h-full rounded-full",
-              "transition-[width] duration-200 ease-out motion-reduce:transition-none",
-              INDICATOR_TONE_CLASSES[resolvedTone],
+              "relative isolate w-full overflow-hidden rounded-full bg-(--color-surface-hover)",
+              TRACK_SIZE_CLASSES[size],
             )}
-          />
+          >
+            <BaseMeter.Indicator
+              className={cn(
+                "h-full rounded-full",
+                "transition-[width] duration-200 ease-out motion-reduce:transition-none",
+                INDICATOR_TONE_CLASSES[resolvedTone],
+              )}
+            />
+          </BaseMeter.Track>
           {markers?.map((marker) => (
-            <span
+            <MeterThresholdMark
               key={`${marker.value}-${marker.label ?? ""}`}
-              title={marker.label}
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 w-px bg-(--color-text-tertiary)"
-              style={{ left: markerOffset(marker.value, min, max) }}
+              marker={marker}
+              min={min}
+              max={max}
+              size={size}
             />
           ))}
-        </BaseMeter.Track>
+        </div>
         {description ? (
           <span
             id={descriptionId}
