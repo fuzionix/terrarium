@@ -36,7 +36,7 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
 
   /* text-micro */
-  --text-micro-size: 11px;
+  --text-micro-size: 12px;
   --text-micro-line: 1.2;
   --text-micro-weight: 500;
 
@@ -46,12 +46,12 @@
   --text-compact-weight: 400;
 
   /* text-ui */
-  --text-ui-size: 13px;
+  --text-ui-size: 14px;
   --text-ui-line: 20px;
   --text-ui-weight: 500;
 
   /* text-title */
-  --text-title-size: 14px;
+  --text-title-size: 16px;
   --text-title-line: 20px;
   --text-title-weight: 600;
 
@@ -134,10 +134,4 @@ samp,
 pre {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-brand-ring);
-  outline-offset: 1px;
-  border-radius: var(--radius-control);
 }

@@ -36,14 +36,14 @@
   --font-mono: "JetBrains Mono", monospace;
 
   /* Typography Sizes */
-  --text-micro: 11px;
+  --text-micro: 12px;
   --text-micro--line-height: 1.2;
   --text-micro--font-weight: 500;
 
   --text-compact: 12px;
   --text-compact--line-height: 16px;
 
-  --text-ui: 13px;
+  --text-ui: 14px;
   --text-ui--line-height: 20px;
 
   --text-title: 14px;
