@@ -283,7 +283,7 @@ export const Parts: Story = {
       <MeterTrack className="relative h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-(--color-surface-hover)">
         <MeterIndicator className="h-full rounded-full bg-success" />
       </MeterTrack>
-      <MeterValue className="shrink-0 font-mono text-micro tabular-nums text-(--color-text-primary)" />
+      <MeterValue className="shrink-0 font-mono text-micro tabular-nums text-(--color-text-primary) opacity-70" />
     </MeterRoot>
   ),
   parameters: {

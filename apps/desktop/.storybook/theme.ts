@@ -13,7 +13,7 @@ export default create({
   appBg: "#FDFDFE",
   appContentBg: "#FFFFFF",
   appPreviewBg: "#FFFFFF",
-  appBorderColor: "rgba(15, 23, 42, 0.08)",
+  appBorderColor: "rgba(15, 23, 42, 0.16)",
   appBorderRadius: 6,
 
   // Text colors

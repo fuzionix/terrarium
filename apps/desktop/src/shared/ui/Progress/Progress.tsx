@@ -161,7 +161,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           {showValue ? (
             <BaseProgress.Value
               className={cn(
-                "shrink-0 font-mono text-compact font-medium tabular-nums",
+                "shrink-0 text-compact font-medium tabular-nums opacity-70",
                 VALUE_TONE_CLASSES[resolvedTone],
               )}
             >

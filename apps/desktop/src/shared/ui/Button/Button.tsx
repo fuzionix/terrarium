@@ -118,7 +118,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           "relative isolate overflow-hidden",
           "inline-flex select-none items-center justify-center whitespace-nowrap cursor-pointer",
           "rounded-control font-sans font-medium",
-          "transition-all duration-75",
+          "transition-all duration-150",
           "enabled:active:translate-y-px",
           "outline-none focus-visible:ring-2 focus-visible:ring-brand-ring",
           "focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-bg)",

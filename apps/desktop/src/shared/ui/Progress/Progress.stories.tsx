@@ -276,7 +276,7 @@ export const FailedRun: Story = {
 export const EnvironmentPanel: Story = {
   name: "Environment panel",
   render: () => (
-    <div className="flex w-[420px] flex-col gap-3 rounded-panel border border-(--color-border) bg-(--color-surface) p-3">
+    <div className="flex w-105 flex-col gap-3 rounded-panel border border-(--color-border) bg-(--color-surface) p-3">
       <Progress
         size="sm"
         status="running"

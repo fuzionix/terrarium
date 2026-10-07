@@ -229,7 +229,7 @@ export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
           {showValue ? (
             <BaseMeter.Value
               className={cn(
-                "shrink-0 font-mono font-medium tabular-nums",
+                "shrink-0 font-medium tabular-nums opacity-70",
                 VALUE_TONE_CLASSES[resolvedTone],
               )}
             >
