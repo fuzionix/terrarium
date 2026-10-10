@@ -78,6 +78,7 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
           "inline-flex select-none items-center justify-center whitespace-nowrap",
           "cursor-pointer rounded-control font-sans font-medium",
           "transition-colors duration-75",
+          "enabled:active:translate-y-px",
           "outline-none focus-visible:ring-2 focus-visible:ring-brand-ring",
           "focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-bg)",
           "disabled:pointer-events-none disabled:opacity-40",
