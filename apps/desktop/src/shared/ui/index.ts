@@ -6,4 +6,5 @@ export * from "./Meter";
 export * from "./Progress";
 export * from "./ScrollArea";
 export * from "./Separator";
+export * from "./Switch";
 export * from "./Toggle";
